@@ -8,7 +8,9 @@
       <div class="g-recaptcha" 
       style="text-align: -webkit-center; margin:auto; align-self: center; transform:scale(3);" 
         data-sitekey="6LfO2ogiAAAAACc9UdD0wYafhd0ShI6Pmx6aSz0V"
-        data-callback="captchaCallback"></div>
+        data-callback="captchaCallback"
+        data-expired-callback="expiredCallback"
+        ></div>
     </form>
     <script>
       function captchaCallback(response){
@@ -16,6 +18,9 @@
         if(typeof Captcha!=="undefined"){
           Captcha.postMessage(response);
         }
+      }
+      function expiredCallback(response){
+        Captcha.postMessage(response);
       }
     </script>
   </body>
