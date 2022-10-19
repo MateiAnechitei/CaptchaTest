@@ -19,8 +19,9 @@
           Captcha.postMessage(response);
         }
       }
-      function expiredCallback(response){
-        Captcha.postMessage(response);
+      function expiredCallback(){
+        console.log("Web captcha expired");
+        Captcha.postMessage("Captcha expired");
       }
     </script>
   </body>
