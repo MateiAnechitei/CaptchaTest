@@ -10,6 +10,7 @@
         data-sitekey="6LfO2ogiAAAAACc9UdD0wYafhd0ShI6Pmx6aSz0V"
         data-callback="captchaCallback"
         data-expired-callback="expiredCallback"
+        data-theme="dark"
         ></div>
     </form>
     <script>
@@ -21,7 +22,7 @@
       }
       function expiredCallback(){
         console.log("Web captcha expired");
-        Captcha.postMessage("Captcha expired");
+        Captcha.postMessage("EXPIRED");
       }
     </script>
   </body>
