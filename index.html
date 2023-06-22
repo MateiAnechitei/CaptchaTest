@@ -21,6 +21,8 @@
     if (!window.Square) {
       throw new Error('Square.js failed to load properly');
     }
+    // callback()
+    // test.postMessage('Hello World being called from Javascript code');
     const payments = window.Square.payments(appId, locationId);
     let card;
     try {
@@ -35,6 +37,15 @@
   
   
 </script>
+ 
+<script>
+  function callback() {
+    //console.log(response);
+    if (typeof test !== "undefined") {
+      test.postMessage("merge boss");
+    }
+  }
+</script>
 
 <meta charset="utf-8" />
 <title>Square Web Payments Quickstart</title>
@@ -45,7 +56,7 @@
   <div style="width: 100px; justify-content: center;">
     <form id="payment-form">
         <div id="card-container"></div>
-        <button id="card-button" type="button">Pay $1.00</button>
+        <button onclick="callback()" id="card-button" type="button">Pay $1.00</button>
       </form>
       <div id="payment-status-container"></div>
   </div>
