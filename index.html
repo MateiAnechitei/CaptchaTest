@@ -1,52 +1,55 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>reCAPTCHA</title>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        background-color: rgb(20, 26, 41);
-        min-height: 100%;
-        overflow: hidden;
-      }
-      #wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        width: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="wrapper">
-      <form id="recaptcha-form" action="?" method="POST">
-        <div
-          class="g-recaptcha"
-          data-theme="dark"
-          data-sitekey="6LfO2ogiAAAAACc9UdD0wYafhd0ShI6Pmx6aSz0V"
-          data-callback="captchaCallback"
-          data-expired-callback="expiredCallback"
-        ></div>
+<html lange="en">
+<head>
+  <script
+  type="text/javascript"
+  src="https://sandbox.web.squarecdn.com/v1/square.js"
+  ></script>
+  
+  <script>
+  
+  const appId = 'sandbox-sq0idb-zt_MrhrsH_FvU8sGDiWyiw';
+  const locationId = 'L60S98YYWZ2NG';
+  
+  async function initializeCard(payments) {
+    const card = await payments.card();
+    await card.attach('#card-container');
+    return card;
+  }
+  
+  document.addEventListener('DOMContentLoaded', async function () {
+    if (!window.Square) {
+      throw new Error('Square.js failed to load properly');
+    }
+    const payments = window.Square.payments(appId, locationId);
+    let card;
+    try {
+      card = await initializeCard(payments);
+    } catch (e) {
+      console.error('Initializing Card failed', e);
+      return;
+    }
+    
+    // Step 5.2: create card payment
+  });
+  
+  
+</script>
+
+<meta charset="utf-8" />
+<title>Square Web Payments Quickstart</title>
+<link href="app.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div style="width: 100px; justify-content: center;">
+    <form id="payment-form">
+        <div id="card-container"></div>
+        <button id="card-button" type="button">Pay $1.00</button>
       </form>
-    </div>
-    <script>
-      function captchaCallback(response) {
-        //console.log(response);
-        if (typeof Captcha !== "undefined") {
-          Captcha.postMessage(response);
-        }
-      }
-      function expiredCallback() {
-        console.log("Web captcha expired");
-        Captcha.postMessage("EXPIRED");
-      }
-    </script>
-  </body>
+      <div id="payment-status-container"></div>
+  </div>
+  
+  
+</body>
 </html>
